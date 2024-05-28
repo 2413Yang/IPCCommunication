@@ -9,6 +9,30 @@
 //检测参数是否是字符串类型
 #define isStrType(vir) ((typeid(vir) == typeid(const char *)) || typeid(vir) == typeid(std::string))
 
+namespace argvs
+{
+    template <size_t... _Indexes>
+    struct ArgTuple
+    {
+    };
+
+    /// Builds an ArgTuple< 0, 1, 2, ..., _Num - 1 >.
+    template <std::size_t _Num, typename _Tuple = ArgTuple<>>
+    struct ArgIndexTuple;
+
+    template <std::size_t _Num, size_t... _Indexes>
+    struct ArgIndexTuple<_Num, ArgTuple<_Indexes...>>
+        : ArgIndexTuple<_Num - 1, ArgTuple<_Indexes..., sizeof...(_Indexes)>>
+    {
+    };
+
+    template <size_t... _Indexes>
+    struct ArgIndexTuple<0, ArgTuple<_Indexes...>>
+    {
+        typedef ArgTuple<_Indexes...> __type;
+    };
+};
+
 // 类型检查
 template <typename ArgT1, typename ArgT2, size_t N>
 class CType

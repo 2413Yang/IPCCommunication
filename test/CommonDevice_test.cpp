@@ -41,7 +41,7 @@ int main(){
     while (true)
     {
         // 处理设备的事件
-        device.handleEvent(fd);
+        // device.handleEvent(fd);
 
         // // 发送数据到串口
         // std::string message = "Hello, Serial Port!";

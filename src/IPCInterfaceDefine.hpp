@@ -4,7 +4,7 @@
 #include <atomic>
 #include "ArgumentsTableLinux.hpp"
 #include "IPCCallbackLinux.hpp"
-
+#include "NetConnector.hpp"
 // 宏定义 USER_DEFINED，用于定义用户自定义的IPC接口
 #define USER_DEFINED(returnType, funcName, ...)                                                                     \
     class Ipc##funcName                                                                                             \
